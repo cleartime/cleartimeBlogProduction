@@ -18,6 +18,8 @@ const app = express();
 // babel 编译
 require('babel-core/register');
 
+
+
 // 各个模块
 const apiRouter = require('./api-router');
 const tool = require('./tool');
@@ -31,6 +33,8 @@ app.use(express.static('public'));
 
 // 使用 LeanEngine 中间件
 app.use(AV.Cloud);
+app.enable('trust proxy');
+app.use(AV.Cloud.HttpsRedirect());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
